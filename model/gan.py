@@ -7,6 +7,7 @@ import tensorflow as tf
 from absl import app
 from absl import flags
 from absl import logging
+from tensorflow.contrib import eager as tfe
 
 import audio_models
 
@@ -61,20 +62,20 @@ class GAN():
 def main(argv):
   del argv
 
-  # genre1 = tf.data.TFRecordDataset(FLAGS.genre1)
-  # genre1 = genre1.shuffle(buffer_size=100)
-  # genre1 = genre1.batch(FLAGS.batch_size)
-  # genre1 = genre1.repeat()
+  genre1 = tf.data.TFRecordDataset(FLAGS.genre1)
+  genre1 = genre1.shuffle(buffer_size=100)
+  genre1 = genre1.batch(FLAGS.batch_size)
+  genre1 = genre1.repeat()
 
-  # genre2 = tf.data.TFRecordDataset(FLAGS.genre2)
-  # genre2 = genre2.shuffle(buffer_size=100)
-  # genre2 = genre2.batch(FLAGS.batch_size)
-  # genre2 = genre2.repeat()
+  genre2 = tf.data.TFRecordDataset(FLAGS.genre2)
+  genre2 = genre2.shuffle(buffer_size=100)
+  genre2 = genre2.batch(FLAGS.batch_size)
+  genre2 = genre2.repeat()
 
-  genre1 = iter(
+  genre1 = tfe.Iterator(
       tf.data.Dataset.from_tensor_slices(
           np.random.normal(size=[100, 6000, 1])).batch(1))
-  genre2 = iter(
+  genre2 = tfe.Iterator(
       tf.data.Dataset.from_tensor_slices(
           np.random.normal(size=[100, 6000, 1])).batch(1))
 
