@@ -7,12 +7,11 @@ import pickle
 
 import numpy as np
 import pandas as pd
-from scipy.io.wavfile import read as read_wav
-
 import tensorflow as tf
 from absl import app
 from absl import flags
 from absl import logging
+from scipy.io.wavfile import read as read_wav
 
 logging.set_verbosity(tf.logging.DEBUG)
 tf.logging.set_verbosity(tf.logging.DEBUG)
@@ -34,29 +33,36 @@ def int64_feature(value):
 
 def write_records(sorted_audio, out_dir):
   for i, genre in enumerate(sorted_audio):
-    writer = tf.python_io.TFRecordWriter(
-        os.path.join(out_dir,
-                     str(genre) + '.tfrecords'))
-    logging.debug('Processesing Genre: {}  :   {}/{}'.format(
-        genre, i, len(sorted_audio)))
+    record_file = os.path.join(out_dir, str(genre) + '.tfrecords')
+    if not tf.gfile.Exists(record_file):
+      writer = tf.python_io.TFRecordWriter(record_file)
+      logging.debug('Processesing Genre: {}  :   {}/{}'.format(
+          genre, i, len(sorted_audio)))
 
-    for s, track in enumerate(sorted_audio[genre]):
-      if s % 30 == 0:
-        logging.debug("Processed {}/{} tracks in {}".format(
-            s, len(sorted_audio[genre]), genre))
-      track = os.path.join(FLAGS.input_dir, track)
-      with tf.gfile.Open(track, 'rb') as f:
-        sample_rate, song = read_wav(f)
+      for s, track in enumerate(sorted_audio[genre]):
+        if s % 30 == 0:
+          logging.debug("Processed {}/{} tracks in {}".format(
+              s, len(sorted_audio[genre]), genre))
+        track = os.path.join(FLAGS.input_dir, track)
+        with tf.gfile.Open(track, 'rb') as f:
+          sample_rate, song = read_wav(f)
 
-      song = np.mean(song, axis=1)
+        # Make sure we have a channel axis.
+        if len(song.shape) == 1:
+          song = np.expand_dims(song, -1)
 
-      feature = {
-          'song': bytes_feature(tf.compat.as_bytes(song.tostring())),
-          'sample_rate': int64_feature(sample_rate)
-      }
-      example = tf.train.Example(features=tf.train.Features(feature=feature))
-      writer.write(example.SerializeToString())
-    writer.close()
+        # Make mono
+        song = np.mean(song, axis=1)
+
+        feature = {
+            'song': bytes_feature(tf.compat.as_bytes(song.tostring())),
+            'sample_rate': int64_feature(sample_rate)
+        }
+        example = tf.train.Example(features=tf.train.Features(feature=feature))
+        writer.write(example.SerializeToString())
+      writer.close()
+    else:
+      logging.info("{} Already exists. Skipping.".format(record_file))
 
 
 def main(argv):
