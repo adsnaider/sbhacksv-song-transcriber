@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "song-transcriber",
+  "private_key_id": "8ed78a69d990a88e153fbde82e0227a666338438",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQDI5zdfVOX6/gmI\nZjgA5iStR9C0T5pl88TGOQAL0dDdaIWW2TGXiw5cz2mQ4azM7Q/3+I7HSK2xUOIX\ntd8twnZ/FUUHt7wzw43DPskJZ4XAcBpAOFEexm/XsMsZy07Kvd4uw5wusUF+LNX4\nX67+nugf1IwGiwmsh4sPn8HfcSfStC+sRs8soVf/wZSNY+D7P64AJfjZWLXS6pO4\nPH2raYbp7kL9nt+tkrEptbOE9OkJhRoAZnRaBz19xZ7Lk4AthJXZkpP3oC1SfG9H\nRqD61U90WkkQrpC6SytL8RasussdKyBCBVD0KKp+MsqXP7I1oYEJLLo7zDjfU4rf\nf5+TFd7nAgMBAAECggEAC1CSWskiRreF++ud3dcYW7X+uBj/nhxTicJuETxY4g9f\n7rX+yAUp4uo/jMxY+hWj35hdGjYqqiDfCuzQS/h2ygN9psifTd8GnedsVR5CdysZ\nH2LMlsogRGqNlb9QibSVzdZwdmS/Robp6hohde+nLRvAYyHzgocDuvaJabcqwgAQ\nWUYOzV1jzOcKDGP603dNsm1FlYXhtYj+pK+dEAyWrbSXj93G0G4TOju0jmMoz55q\n83b1BHBOfU/zo5g7sodLB+SKQgWeGGBFwDLCaV0LoE5Tluz/HZpgtypL7Bzp9TKe\ndToz/3dIkCYfk62rC19MYppYJ4WkEysrGb5yPV6yUQKBgQDtGIY7y5G7FcxL3GyG\nYj/r1Hy+26MiXkLyUFChQ+ZtzYmljpzQofBrfvWK0LnkObwvgFRNJxkhdOC/ugLy\nlMTMkB0pLAvfml0SdWQSKo2nk03oQ3H4dUC/vzzI+kaaEYpLRs+pb/Jb53C9vx74\n1xcedJD4QPMdyZWx4r0s6ii7SQKBgQDY6/KCFGg9qkx4YTPjaOzP/dFQi+4WKpni\nn+AWaTNsvHPJKqrCZADmas6rXi1Xbqr7tY1eYWCf11eF+aUh1L6RgqOrHtFC1Jpl\nCnIWH1DzUO0JHaa1osdCc7wQxb8pnctxDBZJ+cEXEpVnF7ZHaVYs54KHPjVy+X79\nnUkA2zcYrwKBgQDlN2N25ZyzMSS8ZpKo7M19coVTg0XY0SaJ2ynIbruUhjQ/0Xs7\nnIOxeSFrndVJlqOfjMJzgIwkMzmhQfTdjwQf/GekyUeFWlgGo2UmxusCCkA0fxft\nK3Z4qira5lNhWfnIQuI6ndbCESOG3gHUcyWPtQP+bdRchOnq+xkHFi5guQKBgDQY\nPg5FTl941ZKXbXmwyiaNQ0Z/xHboVjqZwJxBOYtkmr32FDpI//pWLjnzjRoRRtja\nWhAPfMAGXEudj63XRMj3Qc0nwoO1QTsAzjNH5A37ImHtEAtRA1+PIdw5UVZyQdht\nWbD8XQXofZ7bj/gIcRypoKxQIU/yYTARJOYiv1GbAn93hqDDb4q7RvM5DNRdQwZM\nbWnMqhCySGR7GneucDRfZf9nEBqRga40iDyNIJ7q2ssWKu5qa4UFfgLTLI2yCGJo\n6VisRQiVHnSGMQOdnGYOJyY9rICh4e5m27njq/Nlj16bvp/OlUlgRqHm0zGbuDHB\nszpX0ld2SD/ezDhjd9Kh\n-----END PRIVATE KEY-----\n",
+  "client_email": "genretransform@song-transcriber.iam.gserviceaccount.com",
+  "client_id": "114156755380207908518",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/genretransform%40song-transcriber.iam.gserviceaccount.com"
+}
