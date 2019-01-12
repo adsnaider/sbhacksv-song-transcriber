@@ -144,6 +144,8 @@ class AudioEncoderDecoder(tf.keras.models.Model):
     return net
 
 
+# TODO(adam): Should split audio in chunks for training more easily.
+# TODO(adam): Maybe use spectrogram as input instead.
 class AudioClassifier(tf.keras.models.Model):
 
   def __init__(self, name='AudioClassifier'):
@@ -164,7 +166,25 @@ class AudioClassifier(tf.keras.models.Model):
     self.pool3 = tf.keras.layers.AveragePooling1D(pool_size=10, padding='same')
     self.norm3 = tf.keras.layers.BatchNormalization()
 
+    with tf.name_scope("output"):
+      self.fc = tf.keras.layers.Dense(units=1)
 
+  def call(self, inputs):
+    net = inputs
+    net = self.conv1(net)
+    net = self.pool1(net)
+    net = self.norm1(net)
+    net = self.conv2(net)
+    net = self.pool2(net)
+    net = self.norm2(net)
+    net = self.conv3(net)
+    net = self.pool3(net)
+    net = self.norm3(net)
+
+    net = tf.reduce_max(net, axis=1)
+    net = self.fc(net)
+
+    return net
 
 
 # Simple main program to test the model works.
@@ -174,10 +194,16 @@ if __name__ == '__main__':
   import numpy as np
 
   input_data = np.random.normal(size=[20, 6000, 1])
-  model = AudioEncoderDecoder(tracks=2)
+  encoder_decoder = AudioEncoderDecoder(tracks=1)
 
   print(input_data)
   print(input_data.shape)
-  out = model(tf.constant(input_data, dtype=tf.float32)).numpy()
+  out = encoder_decoder(tf.constant(input_data, dtype=tf.float32)).numpy()
+  print(out)
+  print(out.shape)
+
+  classifier = AudioClassifier()
+  out = classifier(tf.constant(input_data, dtype=tf.float32)).numpy()
+
   print(out)
   print(out.shape)
