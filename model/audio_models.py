@@ -144,6 +144,29 @@ class AudioEncoderDecoder(tf.keras.models.Model):
     return net
 
 
+class AudioClassifier(tf.keras.models.Model):
+
+  def __init__(self, name='AudioClassifier'):
+    super(AudioClassifier, self).__init__(name=name)
+
+    self.conv1 = tf.keras.layers.Conv1D(
+        filters=3, kernel_size=10, padding='same', activation=tf.nn.leaky_relu)
+    self.pool1 = tf.keras.layers.AveragePooling1D(pool_size=10, padding='same')
+    self.norm1 = tf.keras.layers.BatchNormalization()
+
+    self.conv2 = tf.keras.layers.Conv1D(
+        filters=5, kernel_size=8, padding='same', activation=tf.nn.leaky_relu)
+    self.pool2 = tf.keras.layers.AveragePooling1D(pool_size=10, padding='same')
+    self.norm2 = tf.keras.layers.BatchNormalization()
+
+    self.conv3 = tf.keras.layers.Conv1D(
+        filters=10, kernel_size=5, padding='same', activation=tf.nn.leaky_relu)
+    self.pool3 = tf.keras.layers.AveragePooling1D(pool_size=10, padding='same')
+    self.norm3 = tf.keras.layers.BatchNormalization()
+
+
+
+
 # Simple main program to test the model works.
 if __name__ == '__main__':
   tf.enable_eager_execution()
