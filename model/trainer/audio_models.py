@@ -4,6 +4,8 @@ from __future__ import print_function
 
 import tensorflow as tf
 
+print("TF VERSION: !!!!!! ", tf.__version__)
+
 
 class Conv1DTranspose(tf.keras.layers.Conv2DTranspose):
 
@@ -121,6 +123,7 @@ class AudioEncoderDecoder(tf.keras.models.Model):
           filters=tracks, kernel_size=10, padding='same', activation=None)
 
   def call(self, inputs):
+    net = inputs
     net = l0 = inputs
     net = self.econv1(net)
     net = self.epool1(net)
